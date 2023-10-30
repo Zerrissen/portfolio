@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .nav {
+        @apply relative ml-10 text-text-light hover:text-gray-700 dark:text-gray-500 dark:hover:text-white font-mono font-bold tracking-[1px] 
+    }
+    .nav::after {
+        @apply content-[''] bg-accent-color-light dark:bg-accent-color-dark h-[3px] w-[0%] left-0 -bottom-[5px] rounded-xl absolute duration-200
+    }
+    .nav:hover::after {
+        @apply w-[100%]
+    }
+}
