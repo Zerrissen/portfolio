@@ -12,7 +12,7 @@
                 <label class="block text-gray-700 dark:text-gray-400 font-bold mb-2" for="name">
                     Name
                 </label>
-                <input v-model="form.name"
+                <input v-model="name"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400"
                     id="name" type="text" placeholder="John Doe">
             </div>
@@ -20,7 +20,7 @@
                 <label class="block text-gray-700 dark:text-gray-400 font-bold mb-2" for="organization">
                     Organization
                 </label>
-                <input v-model="form.organization"
+                <input v-model="organization"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400"
                     id="organization" type="text" placeholder="Acme Inc.">
             </div>
@@ -28,7 +28,7 @@
                 <label class="block text-gray-700 dark:text-gray-400 font-bold mb-2" for="email">
                     Email
                 </label>
-                <input v-model="form.email"
+                <input v-model="email"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400"
                     id="email" type="email" placeholder="johndoe@example.com">
             </div>
@@ -36,7 +36,7 @@
                 <label class="block text-gray-700 dark:text-gray-400 font-bold mb-2" for="message">
                     Message
                 </label>
-                <textarea v-model="form.message"
+                <textarea v-model="message"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400"
                     id="message" placeholder="Enter your message here"></textarea>
             </div>
@@ -53,22 +53,39 @@
 
 
 <script>
+import emailjs from '@emailjs/nodejs';
+
 export default {
     data() {
         return {
-            form: {
-                name: '',
-                organization: '',
-                email: '',
-                message: ''
-            }
+            name: '',
+            organization: '',
+            email: '',
+            message: ''
         }
     },
     methods: {
-        submitForm() {
-            // Handle form submission here
-            console.log(this.form)
-        }
+        submitForm(e) {
+            try {
+                emailjs.send('service_ests5ee', 'template_iqwr63s', e.target,
+                    {
+                    publicKey: 'cgwKXJhS0yNwngpic',
+                    privateKey: 'GwHB1Df3H4WOZ49jS4FL6',
+                    name: this.name,
+                    email: this.email,
+                    organization: this.organization,
+                    message: this.message
+                })
+
+            } catch (error) {
+                console.log({ error })
+            }
+            // Reset form field
+            this.name = ''
+            this.email = ''
+            this.organization = ''
+            this.message = ''
+        },
     }
 }
 </script>
