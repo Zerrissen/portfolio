@@ -13,6 +13,7 @@ export default {
       white: colors.white,
       black: colors.black,
       blue: colors.blue,
+      red: colors.red,
       'primary-color-light': "#98B7DD",
       'secondary-color-light': "#B9D1EE",
       'accent-color-light': "#2B67B1",

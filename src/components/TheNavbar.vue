@@ -7,7 +7,7 @@ const toggleDark = useToggle(isDark);
 
 <template>
     <nav>
-        <div class='mb-10 mt-5'>
+        <div class='mb-10'>
             <div class='flex items-center justify-between h-16'>
                 <router-link to="/" class="nav">Home</router-link>
                 <router-link to="/projects" class="nav">Projects</router-link>
